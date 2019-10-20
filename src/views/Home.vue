@@ -1,18 +1,49 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    
+    <base-layout>
+      <template slot="header">
+        <header-section></header-section>
+      </template>
+      <template slot="feature">
+        <feature-section></feature-section>
+      </template>
+      <template slot="membership">
+        <membership-section></membership-section>
+      </template>
+      <template slot="testimonials">
+        <testimonials-section></testimonials-section>
+      </template>
+      <template slot="demo">
+        <demo-section></demo-section>
+      </template>
+      <template slot="footer">
+        <footer-section></footer-section>
+      </template>
+    </base-layout>
+    
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import BaseLayout from '@/components/BaseLayout.vue'
+import HeaderSection from '@/components/Sections/HeaderSection.vue'
+import FeatureSection from '@/components/Sections/FeatureSection.vue'
+import MembershipSection from '@/components/Sections/MembershipSection.vue'
+import TestimonialsSection from '@/components/Sections/TestimonialsSection.vue'
+import DemoSection from '@/components/Sections/DemoSection.vue'
+import FooterSection from '@/components/Sections/FooterSection.vue'
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    'base-layout':BaseLayout,
+    'header-section':HeaderSection,
+    'feature-section': FeatureSection,
+    'membership-section' : MembershipSection,
+    'testimonials-section' : TestimonialsSection,
+    'demo-section' : DemoSection,
+    'footer-section' : FooterSection,
   }
 }
 </script>
