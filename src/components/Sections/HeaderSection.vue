@@ -69,7 +69,7 @@
 .hero
 {
       background: url('../../assets/images/header/slide4.jpg') no-repeat;
-    height : 750px;
+    height : 600px;
     background-size: cover;
     background-position: 0px -109px;
     background-attachment: fixed;
