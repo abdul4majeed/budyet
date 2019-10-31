@@ -1,7 +1,9 @@
 <template>
     <div>
         <div id="footer">
-            This is footer
+            <div class="footer-holder text-center">
+                <span><b>©2018 Budyet</b> - Keep track of your finances and build better spending habits</span>
+            </div>
         </div>
     </div>
 </template>
@@ -13,9 +15,5 @@
 </script>
 
 <style scoped>
-#footer
-{
-    border:1px solid brown;
-    border-radius: 50%;
-}
+
 </style>

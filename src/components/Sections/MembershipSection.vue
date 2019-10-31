@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div id="membership">
-            This is membership
+        <div id="membership" >
         </div>
+        
     </div>
 </template>
 
@@ -13,8 +13,5 @@
 </script>
 
 <style scoped>
-#membership{
-    border:1px solid yellow;
-    border-radius: 50%;
-}
+
 </style>
