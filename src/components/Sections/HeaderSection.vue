@@ -3,7 +3,7 @@
         <div id="nav-bar">
             <div>
                 
-                <b-navbar toggleable="sm" class="my-nav" variant="faded" type="light" fixed="top">
+                <b-navbar toggleable="sm" class="my-nav" variant="faded" type="light" fixed="top" ref="navbar">
                     <b-navbar-brand href="#"><img src="#" alt="Logo Image"></b-navbar-brand>
 
                     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -68,7 +68,7 @@
 
 .hero
 {
-      background: url('../../assets/images/header/slide4.jpg') no-repeat;
+    background: url('../../assets/images/header/slide4.jpg') no-repeat;
     height : 600px;
     background-size: cover;
     background-position: 0px -109px;
