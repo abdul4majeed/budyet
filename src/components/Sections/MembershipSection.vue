@@ -96,6 +96,12 @@
     background-size: cover;
     background-position: 0px -109px;
 }
+
+h2{
+    font-family: 'Leckerli One', cursive;
+    letter-spacing: 0.2rem;
+}
+
 .membership-card
 {
     background-color: rgba(0,0,0,0.3);

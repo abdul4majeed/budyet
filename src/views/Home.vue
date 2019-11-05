@@ -11,9 +11,9 @@
       <template slot="membership">
         <membership-section></membership-section>
       </template>
-      <!-- <template slot="testimonials">
-        <testimonials-section></testimonials-section>
-      </template> -->
+      <template slot="testimonials">
+        <contact-us-section></contact-us-section>
+      </template>
       <template slot="footer">
         <footer-section></footer-section>
       </template>
@@ -28,7 +28,7 @@ import BaseLayout from '@/components/BaseLayout.vue'
 import HeaderSection from '@/components/Sections/HeaderSection.vue'
 import FeatureSection from '@/components/Sections/FeatureSection.vue'
 import MembershipSection from '@/components/Sections/MembershipSection.vue'
-// import TestimonialsSection from '@/components/Sections/TestimonialsSection.vue'
+import ContactUsSection from '@/components/Sections/ContactUsSection.vue'
 import FooterSection from '@/components/Sections/FooterSection.vue'
 export default {
   name: 'home',
@@ -37,7 +37,7 @@ export default {
     'header-section':HeaderSection,
     'feature-section': FeatureSection,
     'membership-section' : MembershipSection,
-    // 'testimonials-section' : TestimonialsSection,
+    'contact-us-section' : ContactUsSection,
     'footer-section' : FooterSection,
   },
 
