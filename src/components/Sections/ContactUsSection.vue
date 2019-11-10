@@ -12,7 +12,7 @@
                     </b-row>
                     <b-row>
                         <b-col cols="6">
-                            <form class="vue-form" @submit.prevent="submit">
+                            <form class="vue-form" @submit.prevent="startCaptcha">
 
     <div class="error-message">
       <p v-show="!email.valid">Oh, please enter a valid email address.</p>
@@ -39,7 +39,8 @@
         <span class="counter">{{ message.text.length }} / {{ message.maxlength }}</span>
       </div>
       <div>
-        <input type="submit" value="Send Form">
+        <google-recaptcha ref="recaptcha" @verify="submit"></google-recaptcha>
+        <input type="submit"  value="Send Form">
       </div>
     </fieldset>
   </form>
@@ -55,22 +56,27 @@
 </template>
 
 <script>
+import GoogleRecaptcha from '@/components/Common/recaptcha.vue'
 
     export default {
+       
+        components:{
+          'google-recaptcha' : GoogleRecaptcha,
+        },
         data()
         {
             return {
-
+                date : process.env.VUE_APP_URL,
                 emailRegExp : /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
                 my_path : require('@/assets/images/header/contactUs.png'),
-                name: "",
+                name: "sdxc",
                 email: {
-                    value: "",
+                    value: "esdxc@sdfxc.com",
                     valid: true
                 },
                
                 message: {
-                    text: '',
+                    text: 'qwefgh',
                     maxlength: 255
                 },
                 submitted: false
@@ -78,9 +84,46 @@
         },
 
         methods: {
+          startCaptcha()
+          {
+            this.$refs.recaptcha.execute()
+          },
             // submit form handler
-            submit: function() {
-            this.submitted = true;
+            submit(token) {
+
+              this.$store.commit('changeLoaderSwitch',true);
+                console.log(token);
+              this.submitted = true;
+              
+              let data = {
+                'email': this.email,
+                'message' : this.message,
+                'name' : this.name,
+                'recaptcha_token' : token
+              };
+                
+              let url = window.urls.contact_us_form_store;
+              this.AjaxCall('post',url,data)
+              .then((response) => {
+                
+                setTimeout(() => {
+                  this.$store.commit('changeLoaderSwitch',false);
+                }, 500);
+                
+                if(response.data.status == 200 && response.data.error == false)
+                {
+                    this.toastrAlter('info',response.data.msg);
+                }
+                else if(response.data.status == 400 && response.data.error == true){
+                   this.validationHumanReadableMsg(response.data.msg);
+                }
+                else if(response.data.status == 500 && response.data.error == true)
+                {
+                    this.toastrAlter('error',this.dbHumanReadableMsg( response.data.msg ));
+                }
+
+                  
+              });
             },
             // validate by type and value
             validate: function(type, value) {
