@@ -20,6 +20,23 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 
+
+import * as urls from '@/base/urls.js';
+window.urls = urls;
+
+import 'vue-loaders/dist/vue-loaders.css';
+import VueLoaders from 'vue-loaders';
+
+Vue.use(VueLoaders);
+
+import Toaster from 'v-toaster'
+import 'v-toaster/dist/v-toaster.css'
+Vue.use(Toaster);
+
+import {utils} from '@/mixins/utils.js';
+
+Vue.mixin(utils);
+
 new Vue({
   router,
   store,

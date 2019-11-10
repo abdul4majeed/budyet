@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    
+    <div class="loader" v-if="showLoader">
+        <vue-loaders name="ball-beat" color="black" scale="1.2"></vue-loaders>
+    </div>
     <base-layout>
       <template slot="header">
         <header-section ref="header"></header-section>
@@ -30,6 +32,8 @@ import FeatureSection from '@/components/Sections/FeatureSection.vue'
 import MembershipSection from '@/components/Sections/MembershipSection.vue'
 import ContactUsSection from '@/components/Sections/ContactUsSection.vue'
 import FooterSection from '@/components/Sections/FooterSection.vue'
+import { mapState } from 'vuex';
+
 export default {
   name: 'home',
   components: {
@@ -44,21 +48,24 @@ export default {
     data()
     {
       return {
+        showLoader : this.$store.getters.getLoaderSwitch,
         scroll_height : 600,
       }
     },
   // Remove the Navbar when screen scroll above 600 pixels and
   // reappear when less then 600 pixels
-   mounted() 
-        {
-            window.addEventListener("scroll", this.onScroll)
-        },
-        beforeDestroy() {
-            window.removeEventListener("scroll", this.onScroll)
-        },
-        methods: {
-            onScroll() {
-              console.log(window.top.scrollY);
+  mounted() 
+  {
+      window.addEventListener("scroll", this.onScroll)
+  },
+  beforeDestroy() 
+  {
+      window.removeEventListener("scroll", this.onScroll)
+  },
+  methods: 
+  {
+    onScroll() 
+    {
               if( window.top.scrollY == 0 )
               {
                 this.$refs.header.$refs.navbar.style.padding = "0 7rem";
@@ -79,7 +86,30 @@ export default {
               {
                   this.$refs.header.$refs.navbar.classList.remove('d-none');
               }
-            }
-        }
+    }
+  },
+  computed: mapState(['loaderSwitch']),
+
+watch: {
+    loaderSwitch(newValue) {
+      this.showLoader = newValue;
+    },
+  },
+  
+  
 }
 </script>
+
+<style scoped>
+.loader
+{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(255,255,255,0.5);
+    z-index: 10000;
+}
+</style>
